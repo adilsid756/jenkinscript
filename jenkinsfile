@@ -3,20 +3,20 @@ pipeline {
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
-        maven "Maven3.8"
+        maven "MAVEN_HOME"
     }
 
     stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/capgteam/bankapplicationrepo.git'
+                git 'https://github.com/adilsid756/Bankappide.git'
 
                 // Run Maven on a Unix agent.
                 //sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
                 // To run Maven on a Windows agent, use
-                 bat "mvn -f Day1-BankApp/pom.xml -Dmaven.test.failure.ignore=true clean package"
+                 bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
             post {
@@ -30,7 +30,7 @@ pipeline {
         }
          stage('test'){
             steps{
-                bat "mvn -f Day1-BankApp/pom.xml test"
+                bat "mvn test"
             }
         }
         stage('acceptance'){
